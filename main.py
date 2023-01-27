@@ -3,7 +3,7 @@ from tkinter import *
 import random
 from tkinter import messagebox
 
-lifes = 10
+lives = 10
 
 # Choosing random name
 rand_int = random.randint(0, len(word_list) - 1)
@@ -39,7 +39,7 @@ guessed_words = []
 
 # Functions
 def get_input():
-    global lifes
+    global lives
     global to_guess
 
     entered = entry.get().lower()
@@ -65,18 +65,18 @@ def get_input():
         messagebox.showwarning("Warning", "Please enter only one character.")
     counter = -1
     check = False
-    for i in chosen_name:
+    for char in chosen_name:
         counter += 1
-        if entered == i and entered not in guessed_words:
-            labels[counter].config(text=i.upper(), padx=20)
+        if entered == char and entered not in guessed_words:
+            labels[counter].config(text=char.upper(), padx=20)
             to_guess -= 1
             check = True
-    if check == False and len(entered) >= 1 and entered not in guessed_words:
-        lifes -= 1
-        life_indicator.config(text=f"Lifes: {lifes}", bg="sky blue")
+    if not check and len(entered) >= 1 and entered not in guessed_words:
+        lives -= 1
+        life_indicator.config(text=f"Lives: {lives}", bg="sky blue")
         messagebox.showwarning("Wrong Guess", f"'{entered}' not in name\nTry again")
-    if lifes == 0:
-        messagebox.showinfo("Game Ends", "You have lost your lifes.\nBetter luck next time!!!")
+    if lives == 0:
+        messagebox.showinfo("Game Ends", "You have lost your lives.\nBetter luck next time!!!")
     if to_guess == 0:
         messagebox.showinfo("Congratulations!!!", "You guessed it.\nYou have won!!!\😃")
     guessed_words.append(entered)
@@ -104,7 +104,7 @@ button = Button(root, text="Submit", command=get_input)
 button.place(x=x_size / 2 - 20, y=250)
 
 # Life indicator
-life_indicator = Label(root, text=f"Lifes: {lifes}", bg="sky blue", font=("forte", 25), fg="green yellow")
-life_indicator.place(x=x_size - 120, y=0)
+life_indicator = Label(root, text=f"Lives: {lives}", bg="sky blue", font=("forte", 25), fg="green yellow")
+life_indicator.place(x=x_size - 135, y=0)
 
 root.mainloop()
