@@ -72,7 +72,6 @@ def get_input():
             to_guess -= 1
             check = True
     if not check and len(entered) >= 1 and entered not in guessed_words:
-        lives -= 1
         life_indicator.config(text=f"Lives: {lives}", bg="sky blue")
         messagebox.showwarning("Wrong Guess", f"'{entered}' not in name\nTry again")
     if lives == 0:
@@ -91,12 +90,12 @@ for i in labels:
     i.config(font=("Ubuntu", 15))
 
 # Entry box
-entry = Entry(root, text="Enter", width=20)
+entry = Entry(root, width=20)
 entry.place(x=(x_size / 2) - 55, y=100)
 entry.focus_set()
 
 # Enter text label
-enter_label = Label(root, text="Enter:", bg="sky blue", fg="burlywood1", font=("forte", 20))
+enter_label = Label(root, text="Enter :", bg="sky blue", fg="burlywood1", font=("forte", 20))
 enter_label.place(x=x_size / 2 - 150, y=90)
 
 # Submit button
