@@ -54,8 +54,6 @@ def get_input():
     if entered in guessed_words:
         messagebox.showwarning("Already Guessed", f"You have already guessed the letter '{entered}'\nTry next one.")
 
-    print(entered)
-
     # Deleting the entry
     entry.delete(0, END)
 
@@ -79,7 +77,6 @@ def get_input():
     if to_guess == 0:
         messagebox.showinfo("Congratulations!!!", "You guessed it.\nYou have won!!!\😃")
     guessed_words.append(entered)
-    print(to_guess)
 
 
 y_val = 175
@@ -90,17 +87,18 @@ for i in labels:
     i.config(font=("Ubuntu", 15))
 
 # Entry box
-entry = Entry(root, width=20)
+entry = Entry(root, width=20, bg="burlywood1", borderwidth=3, font=("Bold", 12))
 entry.place(x=(x_size / 2) - 55, y=100)
 entry.focus_set()
 
 # Enter text label
-enter_label = Label(root, text="Enter :", bg="sky blue", fg="burlywood1", font=("forte", 20))
+enter_label = Label(root, text="Enter :", bg="sky blue", fg="red3", font=("forte", 20))
 enter_label.place(x=x_size / 2 - 150, y=90)
 
 # Submit button
 button = Button(root, text="Submit", command=get_input)
 button.place(x=x_size / 2 - 20, y=250)
+submit_img = PhotoImage(file="submit.png")
 
 # Life indicator
 life_indicator = Label(root, text=f"Lives: {lives}", bg="sky blue", font=("forte", 25), fg="green yellow")
