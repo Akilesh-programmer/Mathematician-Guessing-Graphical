@@ -8,7 +8,6 @@ lives = 10
 # Choosing random name
 rand_int = random.randint(0, len(word_list) - 1)
 chosen_name = word_list[rand_int]
-print(chosen_name)
 
 x_size = len(chosen_name) * 65 + 50
 
