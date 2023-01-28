@@ -49,18 +49,21 @@ def get_input():
     alpha_check = entered.isalpha()
 
     if not alpha_check:
-        messagebox.showwarning("Only Alphabets!!!", f"You entered '{entered}'\nPlease enter only alphabets")
+        messagebox.showwarning(
+            "Only Alphabets!!!", f"You entered '{entered}'\nPlease enter only alphabets")
         entry.delete(0, END)
         return
 
     if entered in guessed_words:
-        messagebox.showwarning("Already Guessed", f"You have already guessed the letter '{entered}'\nTry next one.")
+        messagebox.showwarning(
+            "Already Guessed", f"You have already guessed the letter '{entered}'\nTry next one.")
 
     # Deleting the entry
     entry.delete(0, END)
 
     if len(entered) < 1:
-        messagebox.showwarning("Warning", "Please enter a valid character and try again.")
+        messagebox.showwarning(
+            "Warning", "Please enter a valid character and try again.")
     if len(entered) > 1:
         messagebox.showwarning("Warning", "Please enter only one character.")
     counter = -1
@@ -74,11 +77,19 @@ def get_input():
     if not check and len(entered) == 1 and entered not in guessed_words:
         lives -= 1
         life_indicator.config(text=f"Lives: {lives}", bg="#E6624C")
-        messagebox.showwarning("Wrong Guess", f"'{entered}' not in name\nTry again")
+        messagebox.showwarning(
+            "Wrong Guess", f"'{entered}' not in name\nTry again")
     if lives == 0:
-        messagebox.showinfo("Game Ends", "You have lost your lives.\nBetter luck next time!!!")
+        messagebox.showinfo(
+            "Game Ends", f"You have lost your lives.\nBetter luck next time!!!\nThe name was {chosen_name}.")
+        counter = -1
+
+        for char in chosen_name:
+            counter += 1
+            labels[counter].config(text=char.upper(), padx=20)
     if to_guess == 0:
-        messagebox.showinfo("Congratulations!!!", "You guessed it.\nYou have won!!!\😃")
+        messagebox.showinfo("Congratulations!!!",
+                            "You guessed it.\nYou have won!!!\😃")
     guessed_words.append(entered)
 
 
@@ -95,16 +106,19 @@ entry.place(x=(x_size / 2) - 55, y=100)
 entry.focus_set()
 
 # Enter text label
-enter_label = Label(root, text="Enter :", bg="#E6624C", fg="#992714", font=("forte", 20))
+enter_label = Label(root, text="Enter :", bg="#E6624C",
+                    fg="#992714", font=("forte", 20))
 enter_label.place(x=x_size / 2 - 150, y=90)
 
 # Submit button
 button_img = PhotoImage(file="submit-removebg-preview-removebg-preview.png")
-button = Button(root, image=button_img, command=get_input, bg="#E6624C",highlightthickness = 0, bd = 0)
+button = Button(root, image=button_img, command=get_input,
+                bg="#E6624C", highlightthickness=0, bd=0)
 button.place(x=x_size / 2 - 50, y=250)
 
 # Life indicator
-life_indicator = Label(root, text=f"Lives: {lives}", bg="#E6624C", font=("forte", 25), fg="#4CE6A3")
+life_indicator = Label(
+    root, text=f"Lives: {lives}", bg="#E6624C", font=("forte", 25), fg="#4CE6A3")
 life_indicator.place(x=x_size - 135, y=0)
 
 root.mainloop()
